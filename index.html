@@ -1,5 +1,89 @@
-<ul class="link-list">
-    <li><a href="form-cadastro-cliente.html">👤 Cadastro de Cliente</a></li>
-    <li><a href="form-cadastro-produto.html" class="produto">📦 Cadastro de Produto</a></li>
-    <li><a href="form-cadastro-fornecedor.html" class="fornecedor">🚚 Cadastro de Fornecedor</a></li>
-</ul>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu de Formulários de Cadastro</title>
+    <!-- Importa a fonte do Google Fonts para um visual mais moderno -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos CSS internos para a página de menu -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6; /* Cor de fundo suave */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2.5rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Sombra suave */
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #0056b3; /* Azul escuro para o título */
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #6c757d; /* Cinza para o parágrafo */
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 1rem;
+        }
+        .link-list a {
+            display: block;
+            background-color: #007bff; /* Cor base dos botões */
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+        }
+        .link-list a:hover {
+            background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+            transform: translateY(-4px); /* Efeito de levantar o botão */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        /* Cores personalizadas para cada botão */
+        .link-list a.produto { background-color: #28a745; }
+        .link-list a.produto:hover { background-color: #218838; }
+        .link-list a.fornecedor { background-color: #ffc107; color: #212529; }
+        .link-list a.fornecedor:hover { background-color: #e0a800; }
+    </style>
+</head>
+<body>
+    <!-- Conteúdo principal da página -->
+    <div class="container">
+        <h1>Menu de Formulários</h1>
+        <p>Clique em um link abaixo para visualizar o cadastro.</p>
+        
+        <!-- Sua lista de links -->
+        <ul class="link-list">
+            <li><a href="form-cadastro-cliente.html">👤 Cadastro de Cliente</a></li>
+            <li><a href="form-cadastro-produto.html" class="produto">📦 Cadastro de Produto</a></li>
+            <li><a href="form-cadastro-fornecedor.html" class="fornecedor">🚚 Cadastro de Fornecedor</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Fornecedor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffc107;
+            --primary-hover-color: #e0a800;
+            --text-on-primary: #212529;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --form-background: #ffffff;
+            --text-color: #212529;
+            --label-color: #495057;
+            --border-color: #dee2e6;
+            --box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background-color: var(--form-background);
+            padding: 2.5rem 3rem;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #c89a00;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--label-color);
+            font-size: 1rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        fieldset:last-of-type {
+            margin-bottom: 0;
+        }
+
+        legend {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            width: 100%;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .input-group {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group.two-cols { grid-template-columns: repeat(2, 1fr); }
+        .input-group.three-cols { grid-template-columns: 1fr 1fr 0.5fr; }
+        .input-group.address-details { grid-template-columns: 0.5fr 1.5fr; }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--label-color);
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.15);
+        }
+
+        input::placeholder {
+            color: #adb5bd;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-on-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 768px) {
+            .input-group.two-cols,
+            .input-group.three-cols,
+            .input-group.address-details {
+                grid-template-columns: 1fr;
+            }
+            .form-container {
+                padding: 2rem;
+            }
+            .form-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Cadastro de Fornecedor</h1>
+                <p>Insira os dados do novo parceiro comercial.</p>
+            </div>
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Dados da Empresa</legend>
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label for="razaoSocial">Razão Social*</label>
+                            <input type="text" id="razaoSocial" name="razaoSocial" required>
+                        </div>
+                    </div>
+                     <div class="input-group">
+                        <div class="input-field">
+                            <label for="nomeFantasia">Nome Fantasia</label>
+                            <input type="text" id="nomeFantasia" name="nomeFantasia">
+                        </div>
+                    </div>
+                    <div class="input-group two-cols">
+                        <div class="input-field">
+                            <label for="cnpj">CNPJ*</label>
+                            <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0001-00" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="inscricaoEstadual">Inscrição Estadual</label>
+                            <input type="text" id="inscricaoEstadual" name="inscricaoEstadual" placeholder="Isento ou número">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Contato Comercial</legend>
+                    <div class="input-group two-cols">
+                        <div class="input-field">
+                            <label for="emailComercial">E-mail Comercial*</label>
+                            <input type="email" id="emailComercial" name="emailComercial" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="telefoneComercial">Telefone Comercial*</label>
+                            <input type="tel" id="telefoneComercial" name="telefoneComercial" required>
+                        </div>
+                    </div>
+                     <div class="input-group">
+                        <div class="input-field">
+                            <label for="nomeContato">Nome do Contato Principal</label>
+                            <input type="text" id="nomeContato" name="nomeContato">
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Endereço</legend>
+                     <div class="input-group two-cols">
+                        <div class="input-field">
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep" placeholder="00000-000">
+                        </div>
+                         <div class="input-field">
+                            <label for="rua">Logradouro (Rua, Av.)</label>
+                            <input type="text" id="rua" name="rua">
+                        </div>
+                    </div>
+                    <div class="input-group address-details">
+                        <div class="input-field">
+                            <label for="numero">Número</label>
+                            <input type="text" id="numero" name="numero">
+                        </div>
+                        <div class="input-field">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" name="complemento" placeholder="Sala, Andar, Bloco">
+                        </div>
+                    </div>
+                     <div class="input-group three-cols">
+                        <div class="input-field">
+                            <label for="bairro">Bairro</label>
+                            <input type="text" id="bairro" name="bairro">
+                        </div>
+                         <div class="input-field">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" name="cidade">
+                        </div>
+                         <div class="input-field">
+                            <label for="estado">UF</label>
+                            <input type="text" id="estado" name="estado" maxlength="2">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar Fornecedor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

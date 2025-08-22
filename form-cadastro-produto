@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #28a745;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --form-background: #ffffff;
+            --text-color: #212529;
+            --label-color: #495057;
+            --border-color: #dee2e6;
+            --box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background-color: var(--form-background);
+            padding: 2.5rem 3rem;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--label-color);
+            font-size: 1rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        fieldset:last-of-type {
+            margin-bottom: 0;
+        }
+
+        legend {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            width: 100%;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .input-group {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group.two-cols { grid-template-columns: repeat(2, 1fr); }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--label-color);
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        input[type="file"] {
+            padding: 0.7rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #adb5bd;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 768px) {
+            .input-group.two-cols {
+                grid-template-columns: 1fr;
+            }
+            .form-container {
+                padding: 2rem;
+            }
+            .form-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Cadastro de Produto</h1>
+                <p>Adicione as informações do novo produto.</p>
+            </div>
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Informações Básicas</legend>
+                    <div class="input-group two-cols">
+                        <div class="input-field">
+                            <label for="nomeProduto">Nome do Produto*</label>
+                            <input type="text" id="nomeProduto" name="nomeProduto" placeholder="Ex: Camiseta de Algodão Orgânico" required>
+                        </div>
+                         <div class="input-field">
+                            <label for="sku">SKU (Código)*</label>
+                            <input type="text" id="sku" name="sku" placeholder="Ex: CAM-ORG-001-P" required>
+                        </div>
+                    </div>
+                     <div class="input-group">
+                        <div class="input-field">
+                            <label for="categoria">Categoria*</label>
+                            <select id="categoria" name="categoria" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="eletronicos">Eletrônicos</option>
+                                <option value="vestuario">Vestuário</option>
+                                <option value="alimentos">Alimentos</option>
+                                <option value="moveis">Móveis</option>
+                                <option value="livros">Livros</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Preço e Estoque</legend>
+                    <div class="input-group two-cols">
+                        <div class="input-field">
+                            <label for="preco">Preço de Venda (R$)*</label>
+                            <input type="number" id="preco" name="preco" placeholder="199,90" step="0.01" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="estoque">Quantidade em Estoque*</label>
+                            <input type="number" id="estoque" name="estoque" placeholder="100" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Descrição e Mídia</legend>
+                    <div class="input-group">
+                         <div class="input-field">
+                            <label for="descricao">Descrição do Produto</label>
+                            <textarea id="descricao" name="descricao" rows="5" placeholder="Detalhe as características, materiais e benefícios do produto."></textarea>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label for="imagemProduto">Imagem Principal do Produto</label>
+                            <input type="file" id="imagemProduto" name="imagemProduto" accept="image/*">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

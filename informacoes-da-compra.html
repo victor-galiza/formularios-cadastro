@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | UrbanThread</title>
+    <title>Informações | UrbanThread</title>
     <!-- Importa a fonte do Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,6 +95,10 @@
             padding: 0 0.5rem;
         }
         
+        .progress-step.completed {
+            color: var(--primary-color);
+        }
+
         .progress-step.active {
             color: var(--primary-color);
             font-weight: 600;
@@ -107,12 +111,19 @@
             background-color: var(--border-color);
             display: grid;
             place-items: center;
+            color: var(--text-light-color);
         }
         
+        .progress-step.completed .icon {
+             background-color: var(--primary-color);
+             color: white;
+        }
+
         .progress-step.active .icon {
             background-color: var(--primary-color);
             color: white;
         }
+
 
         .checkout-layout {
             display: grid;
@@ -141,23 +152,40 @@
             font-weight: 600;
         }
         
-        .section-header a {
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
+        .input-field {
+             display: flex;
+             flex-direction: column;
+             margin-bottom: 1rem;
         }
-        .section-header a:hover { text-decoration: underline; }
 
-        .address-card, .shipping-option, .payment-option {
+        .input-field label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-light-color);
+            margin-bottom: 0.4rem;
+        }
+
+        .input-field input {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .input-field input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .three-cols { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; }
+
+        .selection-card {
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 1.25rem;
             cursor: pointer;
             transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        
-        .shipping-option, .payment-option {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -166,10 +194,15 @@
         
         input[type="radio"] { display: none; }
         
-        input[type="radio"]:checked + .shipping-option,
-        input[type="radio"]:checked + .payment-option {
+        input[type="radio"]:checked + .selection-card {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        #new-address-form {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 1.5rem;
         }
 
         .order-summary {
@@ -233,6 +266,9 @@
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-decoration: none;
+            text-align: center;
+            display: block;
         }
         .btn-primary:hover { background-color: #000; }
         
@@ -255,7 +291,7 @@
     <div class="checkout-container">
         
         <div class="progress-bar">
-            <div class="progress-step"><span class="icon">✓</span> Carrinho</div>
+            <div class="progress-step completed"><span class="icon">✓</span> Carrinho</div>
             <div class="progress-step active"><span class="icon">2</span> Informações</div>
             <div class="progress-step"><span class="icon">3</span> Pagamento</div>
         </div>
@@ -264,13 +300,68 @@
             <main class="checkout-details">
                 <section class="checkout-section">
                     <div class="section-header">
-                        <h2>Endereço de Entrega</h2>
-                        <a href="#">Alterar</a>
+                        <h2>Informações de Contato</h2>
                     </div>
-                    <div class="address-card">
-                        <strong>Maria Silva</strong><br>
-                        Rua das Flores, 123, Apto 4B<br>
-                        Jardim Primavera, São Paulo - SP, 01234-567
+                    <div class="input-field">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="seuemail@exemplo.com" value="maria.silva@email.com">
+                    </div>
+                </section>
+
+                <section class="checkout-section">
+                    <div class="section-header">
+                        <h2>Endereço de Entrega</h2>
+                    </div>
+                    <div>
+                        <input type="radio" name="address-option" id="address-default" checked>
+                        <label for="address-default" class="selection-card">
+                            <div>
+                                <p style="font-weight: 600;">Usar Endereço Padrão</p>
+                                <p style="font-size: 0.9rem; color: var(--text-light-color); margin-top: 4px;">Rua das Flores, 123 - São Paulo, SP</p>
+                            </div>
+                        </label>
+                        
+                        <input type="radio" name="address-option" id="address-new">
+                        <label for="address-new" class="selection-card">
+                             <div>
+                                <p style="font-weight: 600;">Registrar Novo Endereço</p>
+                            </div>
+                        </label>
+
+                        <form id="new-address-form" style="display: none;">
+                            <div class="input-field">
+                                <label for="cep">CEP</label>
+                                <input type="text" id="cep" placeholder="00000-000">
+                            </div>
+                            <div class="input-field">
+                                <label for="address">Endereço</label>
+                                <input type="text" id="address" placeholder="Rua, Av, etc.">
+                            </div>
+                            <div class="two-cols">
+                                 <div class="input-field">
+                                    <label for="number">Número</label>
+                                    <input type="text" id="number">
+                                </div>
+                                 <div class="input-field">
+                                    <label for="complement">Complemento (opcional)</label>
+                                    <input type="text" id="complement" placeholder="Apto, casa, etc.">
+                                </div>
+                            </div>
+                            <div class="three-cols">
+                                <div class="input-field" style="grid-column: span 2;">
+                                    <label for="neighborhood">Bairro</label>
+                                    <input type="text" id="neighborhood">
+                                </div>
+                                <div class="input-field">
+                                   <label for="city">Cidade</label>
+                                   <input type="text" id="city">
+                               </div>
+                               <div class="input-field">
+                                   <label for="state">Estado</label>
+                                   <input type="text" id="state">
+                               </div>
+                            </div>
+                        </form>
                     </div>
                 </section>
 
@@ -280,7 +371,7 @@
                     </div>
                     <div>
                         <input type="radio" name="shipping" id="shipping-pac" checked>
-                        <label for="shipping-pac" class="shipping-option">
+                        <label for="shipping-pac" class="selection-card">
                             <div>
                                 <p style="font-weight: 600;">Correios PAC</p>
                                 <p style="font-size: 0.9rem; color: var(--text-light-color);">Entrega em até 8 dias úteis</p>
@@ -289,48 +380,26 @@
                         </label>
                         
                         <input type="radio" name="shipping" id="shipping-sedex">
-                        <label for="shipping-sedex" class="shipping-option">
+                        <label for="shipping-sedex" class="selection-card">
                              <div>
                                 <p style="font-weight: 600;">Correios Sedex</p>
                                 <p style="font-size: 0.9rem; color: var(--text-light-color);">Entrega em até 3 dias úteis</p>
                             </div>
                             <span style="font-weight: 600;">R$ 28,00</span>
                         </label>
+
+                         <input type="radio" name="shipping" id="shipping-store">
+                        <label for="shipping-store" class="selection-card">
+                             <div>
+                                <p style="font-weight: 600;">Retirar na loja</p>
+                                <p style="font-size: 0.9rem; color: var(--text-light-color);">Disponível em 24 horas</p>
+                            </div>
+                            <span style="font-weight: 600;">Grátis</span>
+                        </label>
                     </div>
                 </section>
                 
-                <section class="checkout-section">
-                    <div class="section-header">
-                        <h2>Pagamento</h2>
-                    </div>
-                    <div>
-                       <input type="radio" name="payment" id="payment-card" checked>
-                        <label for="payment-card" class="payment-option">
-                             <div>
-                                <p style="font-weight: 600;">Cartão de Crédito</p>
-                            </div>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <img src="https://placehold.co/32x20/ffffff/000000?text=V" alt="Visa">
-                                <img src="https://placehold.co/32x20/ffffff/000000?text=M" alt="Mastercard">
-                            </div>
-                        </label>
-                        <!-- Aqui entrariam os campos do cartão -->
-                        
-                        <input type="radio" name="payment" id="payment-pix">
-                        <label for="payment-pix" class="payment-option">
-                             <div>
-                                <p style="font-weight: 600;">PIX</p>
-                            </div>
-                        </label>
-                        
-                        <input type="radio" name="payment" id="payment-boleto">
-                        <label for="payment-boleto" class="payment-option">
-                             <div>
-                                <p style="font-weight: 600;">Boleto Bancário</p>
-                            </div>
-                        </label>
-                    </div>
-                </section>
+                 <a href="pagamento.html" class="btn-primary">Ir para o Pagamento</a>
             </main>
 
             <aside class="order-summary checkout-section">
@@ -375,7 +444,6 @@
                     </div>
                 </div>
                 
-                <button type="submit" class="btn-primary" style="margin-top: 1.5rem;">Finalizar Compra</button>
             </aside>
         </div>
     </div>
@@ -383,6 +451,23 @@
     <script>
         // Ativa os ícones da biblioteca Feather Icons
         feather.replace();
+
+        // Lógica para mostrar/ocultar o formulário de novo endereço
+        const addressDefaultRadio = document.getElementById('address-default');
+        const addressNewRadio = document.getElementById('address-new');
+        const newAddressForm = document.getElementById('new-address-form');
+
+        addressDefaultRadio.addEventListener('change', () => {
+            if (addressDefaultRadio.checked) {
+                newAddressForm.style.display = 'none';
+            }
+        });
+
+        addressNewRadio.addEventListener('change', () => {
+            if (addressNewRadio.checked) {
+                newAddressForm.style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>
